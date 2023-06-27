@@ -1,5 +1,5 @@
 ################################################################################
-# Filename: gui.py                                                   #
+# Filename: gui.py                                                             #
 # author: Oussama Diai                                                         #
 # Description: main file of the program, meant to make the graphical interface #
 # Licence: None                                                                #
