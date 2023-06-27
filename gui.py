@@ -1,8 +1,15 @@
+################################################################################
+# Filename: gui.py                                                   #
+# author: Oussama Diai                                                         #
+# Description: main file of the program, meant to make the graphical interface #
+# Licence: None                                                                #
+################################################################################
+
 import tkinter as tk
 from sudoku_solver import solve_sudoku
 
 def solve():
-    # Résoudre la grille de Sudoku
+    # Solve the Sudoku grid
     grid = read_grid_from_gui()
     if solve_sudoku(grid):
         update_gui_from_grid(grid)
@@ -10,7 +17,7 @@ def solve():
         print("La grille n'a pas de solution.")
 
 def read_grid_from_gui():
-    # Lire la grille de Sudoku à partir de l'interface graphique
+    # Read the Sudoku grid from the graphical interface
     grid = []
     for i in range(9):
         row = []
@@ -24,7 +31,7 @@ def read_grid_from_gui():
     return grid
 
 def update_gui_from_grid(grid):
-    # Mettre à jour l'interface graphique avec la grille résolue
+    # update the graphical interface
     for i in range(9):
         for j in range(9):
             cell_value, cell_color = grid[i][j]
@@ -33,14 +40,14 @@ def update_gui_from_grid(grid):
             cells[i][j].config(fg=cell_color)
 
 def clear():
-    # Effacer les valeurs de la grille
+    # clear the values from the grid
     for i in range(9):
         for j in range(9):
             cells[i][j].delete(0, tk.END)
             cells[i][j].config(fg="black")
 
 def create_grid_cells(root):
-    # Créer les cellules de la grille dans l'interface graphique
+    # Create grid cells in the interface
     cells = []
     for i in range(9):
         row = []
@@ -51,18 +58,18 @@ def create_grid_cells(root):
         cells.append(row)
     return cells
 
-# Créer la fenêtre principale de l'interface graphique
+# Create the main window for the graphical interface
 root = tk.Tk()
 root.title("Sudoku Solver")
 
-# Créer les cellules de la grille
+# Create grid cells
 cells = create_grid_cells(root)
 
-# Créer les boutons de résolution et d'effacement
+# Create Button for solving the puzzle and clearing the grid
 solve_button = tk.Button(root, text="Solve", command=solve)
 solve_button.grid(row=9, column=0, columnspan=4, padx=10, pady=5)
 clear_button = tk.Button(root, text="Clear", command=clear)
 clear_button.grid(row=9, column=5, columnspan=4, padx=10, pady=5)
 
-# Lancer la boucle principale de l'interface graphique
+# Launch the main loop for the graphical interface
 root.mainloop()
